@@ -5,7 +5,7 @@ const UseMemo = () => {
   const [color, setColor] = useState('blue');
 
   function setNumber() {
-    console.log('SetNumber function');
+      console.log('SetNumber function');
     for (let i = 0; i <= 100000000; i++) {}
 
     return count * 10;
