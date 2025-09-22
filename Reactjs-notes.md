@@ -1727,3 +1727,18 @@ const state = useSelector((store) => store.reducer)
 const dispatch = useDispatch()
 dispatch(Action)
 ```
+
+
+
+# 🧠 `useMemo` vs 🧩 `React.memo` in React
+
+## Overview
+
+|  UseMemo Hook                      |                     React.memo                          |
+
+|----------------------------------- | --------------------------------------------------------|
+
+|useMemo hook is use to increase the  browser performance.   | React.memo is a function which takes the component as a argument.  |                 
+|It return memonise as a value |     It prevents the unneccesary component re-renders |
+
+
