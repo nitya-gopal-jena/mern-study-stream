@@ -112,3 +112,7 @@ fs.copyFile('../demo2.txt', '../copy2.txt', (error) => {
 fs.unlinkSync('../link2.txt')
 
 
+// Change file name synchronously
+
+fs.renameSync('../demo.txt', '../newdemo.txt')
+
