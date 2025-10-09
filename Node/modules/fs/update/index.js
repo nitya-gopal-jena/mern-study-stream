@@ -1,6 +1,6 @@
 
 
-const { log, error } = require('console');
+const { error } = require('console');
 const fs = require('fs');
 
 // Updated file data Synchronously 
@@ -67,3 +67,21 @@ fs.appendFile('../demo.txt', 'This is append data', (error) => {
 console.log('End');
 
 
+
+
+// Create a copy of the file synchronously
+
+fs.linkSync('../demo.txt', '../link.txt')
+
+
+// Create a copy of the file asynchronously
+
+fs.link('../demo.txt', '../link2.txt', (error) => {
+    if (error) {
+        console.log('Link file not created');
+        
+    } else {
+        console.log('Link file created');
+        
+    }
+})
