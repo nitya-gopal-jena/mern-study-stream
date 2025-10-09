@@ -11,7 +11,7 @@ try {
     console.log('File updated successfully');
 } catch (error) {
     console.log('File does not updated', error.message);
-    
+
 }
 
 console.log("End");
@@ -24,10 +24,10 @@ console.log("Start");
 fs.writeFile('../demo.txt', 'This is new updated data', (error) => {
     if (error) {
         console.log('File data not updated');
-        
+
     } else {
         console.log('data updated');
-        
+
     }
 })
 
@@ -44,7 +44,7 @@ try {
     console.log('Data appended in file sync')
 } catch (error) {
     console.log('Data not appended', error.message);
-    
+
 }
 console.log('End');
 
@@ -58,9 +58,9 @@ console.log('Start');
 fs.appendFile('../demo.txt', 'This is append data', (error) => {
     if (error) {
         console.log('Data not appended in file ');
-       
+
     } else {
-        console.log('Data appended successfully');      
+        console.log('Data appended successfully');
     }
 })
 
@@ -79,10 +79,10 @@ fs.linkSync('../demo.txt', '../link.txt')
 fs.link('../demo.txt', '../link2.txt', (error) => {
     if (error) {
         console.log('Link file not created');
-        
+
     } else {
         console.log('Link file created');
-        
+
     }
 })
 
@@ -91,3 +91,17 @@ fs.link('../demo.txt', '../link2.txt', (error) => {
 // copy file synchronously
 
 fs.copyFileSync('../demo2.txt', '../copy2.txt');
+
+
+// copy file asynchronously
+
+fs.copyFile('../demo2.txt', '../copy2.txt', (error) => {
+    if (error) {
+        console.log('File not copy', error.message);
+
+    } else {
+        console.log('File copied ');
+
+    }
+});
+
