@@ -13,5 +13,4 @@ const data = fs.readFile('./demo2.txt', 'utf-8', (error, data) => {
     }
 })
 
-
 console.log('End');
