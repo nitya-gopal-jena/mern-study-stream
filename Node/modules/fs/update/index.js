@@ -85,3 +85,9 @@ fs.link('../demo.txt', '../link2.txt', (error) => {
         
     }
 })
+
+
+
+// copy file synchronously
+
+fs.copyFileSync('../demo2.txt', '../copy2.txt');
