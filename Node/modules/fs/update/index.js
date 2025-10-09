@@ -17,6 +17,7 @@ try {
 console.log("End");
 
 
+
 // Updated data file Asynchronously
 
 console.log("Start");
@@ -33,4 +34,18 @@ fs.writeFile('../demo.txt', 'This is new updated data', (error) => {
 console.log("End");
 
 
+
+// Append file Synchronously
+
+console.log('Start');
+
+try {
+    fs.appendFileSync('../demo.txt', 'This is append data');
+    console.log('Data appended in file sync')
+} catch (error) {
+    console.log('Data not appended', error.message);
+    
+}
+
+console.log('End');
 
