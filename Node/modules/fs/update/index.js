@@ -1,6 +1,6 @@
 
 
-const { log } = require('console');
+const { log, error } = require('console');
 const fs = require('fs');
 
 // Updated file data Synchronously 
@@ -46,6 +46,24 @@ try {
     console.log('Data not appended', error.message);
     
 }
+console.log('End');
+
+
+
+
+// Append file Asynchronously
+
+console.log('Start');
+
+fs.appendFile('../demo.txt', 'This is append data', (error) => {
+    if (error) {
+        console.log('Data not appended in file ');
+       
+    } else {
+        console.log('Data appended successfully');      
+    }
+})
 
 console.log('End');
+
 
