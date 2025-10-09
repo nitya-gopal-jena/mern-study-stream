@@ -105,3 +105,10 @@ fs.copyFile('../demo2.txt', '../copy2.txt', (error) => {
     }
 });
 
+
+
+
+// Delete file sync 
+fs.unlinkSync('../link2.txt')
+
+
