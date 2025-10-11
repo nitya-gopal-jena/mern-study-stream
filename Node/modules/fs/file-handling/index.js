@@ -1,6 +1,5 @@
 
 
-const { error } = require('console');
 const fs = require('fs');
 
 // Updated file data Synchronously 
@@ -115,4 +114,5 @@ fs.unlinkSync('../link2.txt')
 // Change file name synchronously
 
 fs.renameSync('../demo.txt', '../newdemo.txt')
+
 
