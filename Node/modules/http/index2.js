@@ -21,11 +21,33 @@ const server = http.createServer((req, res) => {
             });
             break;
 
-
-        case '/':
         case '/about':
             // About  page
             fs.readFile(path.join(__dirname, 'pages/about.html'), 'utf-8', (error, file) => {
+                if (error) {
+                    res.end("page not loaded")
+                } else {
+                    res.end(file);
+                }
+            });
+            break;
+
+  
+        case '/style':
+            // About  page
+            fs.readFile(path.join(__dirname, 'pages/css/style.css'), 'utf-8', (error, file) => {
+                if (error) {
+                    res.end("page not loaded")
+                } else {
+                    res.end(file);
+                }
+            });
+            break;
+
+        
+        case '/home/js':
+            // About  page
+            fs.readFile(path.join(__dirname, 'pages/js/home.js'), 'utf-8', (error, file) => {
                 if (error) {
                     res.end("page not loaded")
                 } else {

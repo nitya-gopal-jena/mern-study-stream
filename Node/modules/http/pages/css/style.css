@@ -1,0 +1,13 @@
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    background-color: aquamarine;
+    padding: 10px;
+    text-align: center;
+}
