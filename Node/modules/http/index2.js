@@ -32,9 +32,9 @@ const server = http.createServer((req, res) => {
             });
             break;
 
-  
+
         case '/style':
-            // About  page
+            // Style css  page
             fs.readFile(path.join(__dirname, 'pages/css/style.css'), 'utf-8', (error, file) => {
                 if (error) {
                     res.end("page not loaded")
@@ -44,9 +44,9 @@ const server = http.createServer((req, res) => {
             });
             break;
 
-        
+
         case '/home/js':
-            // About  page
+            // JavaScript 
             fs.readFile(path.join(__dirname, 'pages/js/home.js'), 'utf-8', (error, file) => {
                 if (error) {
                     res.end("page not loaded")

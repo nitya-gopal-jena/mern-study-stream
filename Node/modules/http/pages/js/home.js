@@ -3,7 +3,10 @@
 let count = 0;
 
 let btn = document.getElementById('btn');
+let counter = document.getElementById('counter');
+
 btn.addEventListener('click', () => {
-    console.log(count++);
+    count++;
+    counter.textContent = `Count:${count}` 
     
 })
