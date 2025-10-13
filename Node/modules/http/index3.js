@@ -43,8 +43,27 @@ const server = http.createServer((req, res) => {
         switch (url) {
             case '/signup': req.on('data', (userDetails) => {
                 let user = JSON.parse(userDetails.toString())
+
+                // Required all fields for craete the uuser 
+                if (!user.name || !user.email || !user.password || !user.age) {
+                    return res.end(JSON.stringify({message:'All fields are required to create user'}))
+                }
+
                 console.log(user);
-                return res.end(JSON.stringify({ message: 'user details recieved in backend and printed' }));
+
+                // Read users.json file 
+                const usersArr = JSON.parse(fs.readFileSync(path.join(__dirname, '/users.json'), 'utf-8'));
+                const isUser = usersArr.find((ele) => ele.email == user.email);
+                if (isUser) {
+                    return res.end(JSON.stringify({ message: 'user with this email already exists' }))
+                }
+
+                // Create users inside the users.json file (push users data to json)
+                usersArr.push(user);
+                fs.writeFileSync(path.join(__dirname, 'users.json'), JSON.stringify(usersArr));
+                return res.end(JSON.stringify({ message: 'User created successfully' }))
+
+                // return res.end(JSON.stringify({ message: 'user details recieved in backend and printed' }));
             })
                 break;
 
