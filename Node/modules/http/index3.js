@@ -1,58 +1,50 @@
+const http=require('http');
+const fs=require('fs');
+const path=require('path');
+const server=http.createServer((req,res)=>{
+    // console.log("client request come");
+    // res.end("Hello");
+    const {url,method}=req;
+    console.log("url =", url);
+    console.log("method =", method);
 
-
-const http = require('http')
-const fs = require('fs')
-const path = require('path');
-
-
-
-const server = http.createServer((req, res) => {
-    const { url } = req;
-
-
-    function myFun(endpath) {
-        fs.readFile(path.join(__dirname, endpath), 'utf-8', (error, file) => {
-            if (error) {
-                res.end('<h1>Page not loaded')
-            } else {
-                res.end(file)
+    function myfunc(endPath){
+        fs.readFile(path.join(__dirname,endPath),(err,file)=>{
+            if(err){
+                return res.end("<h1>server side error</h1>")
+            }else{
+                return res.end(file);
             }
         })
     }
+    if(url == "/favicon.ico") return;
 
-    switch (url) {
-
-        case '/':
-        case '/home':
-            myFun('pages/home.html')
+    if(method=='GET')
+    {
+        switch(url)
+        {
+            case '/':
+            case '/home':myfunc("pages/home.html");
             break;
 
-        case '/about':
-            myFun('pages/about.html')
+            case '/home/css':myfunc('pages/css/style.css')
             break;
 
-
-        case '/style':
-            myFun('pages/css/style.css')
+            case '/home/js': myfunc('pages/js/home.js')
             break;
-
-
-        case '/home/js':
-            myFun('pages/js/home.js')
+            case '/about': myfunc('pages/about.html')
             break;
-
-
-        default:
-            res.end('<h1> 404 Page Not Found </h1>');
+            case '/signup': myfunc('pages/signup.html')
+            break;
+            default:
+                res.end("<h1>404 page not found</h1>")
+        }
+    }else if(method === 'POST'){
+        res.end(JSON.stringify({message:"data recived in backend"}));
     }
-});
 
+})
 
-const PORT = 7000;
-const HOST = 'localhost';
-
-
-server.listen(PORT, HOST, () => {
-    console.log(`Server run at http://${HOST}:${PORT}`);
-
+server.listen('4000','localhost', ()=>{
+    console.log("Server started http://localhost:4000");
 })

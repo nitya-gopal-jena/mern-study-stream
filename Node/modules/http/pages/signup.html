@@ -1,15 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
 </head>
+
 <body>
-    
-<h1>This is signup page</h1>
+
+    <h1>This is signup page</h1>
+
+    <form >
+
+        <input type="email" placeholder="Email" id="email">
+        <input type="text" placeholder="Name" id="name">
+        <input type="number" placeholder="Age" id="age">
+        <input type="password" placeholder="Password" id="pass">
+        <button type="submit" id="btn">Submit</button>
+
+    </form>
 
 
+
+
+    <script>
+
+        let btn = document.getElementById('btn')
+
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault()
+
+            let email = document.getElementById('email').value;
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            let password = document.getElementById('pass').value;
+
+
+            let userData = { email, name, age, password };
+            console.log(userData);
+
+            document.getElementById('email').value = '';
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('pass').value = '';
+
+
+            let res = await fetch('/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+
+            let data = await res.json();
+            alert(data.message);
+
+        });
+
+    </script>
 
 </body>
+
 </html>
