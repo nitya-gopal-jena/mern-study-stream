@@ -47,6 +47,14 @@ const server = http.createServer((req, res) => {
                 return res.end(JSON.stringify({ message: 'user details recieved in backend and printed' }));
             })
                 break;
+
+            case '/login': req.on('data', (userDetails) => {
+                let user = JSON.parse(userDetails.toString())
+                console.log(user);
+                return res.end(JSON.stringify({ message: 'user details recieved in backend and printed' }));
+            })
+                break;
+
             default: res.end('<h1> 404 page not found </h1>')
         }
     }
