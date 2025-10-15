@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Page</title>
+</head>
+
+<body>
+
+    <h1>This is delete page</h1>
+
+    <a href="/home">Home</a>
+    <a href="/about">About</a>
+    <a href="/signup">Signup</a>
+
+    <br><br>
+
+    <form>
+
+        <input type="email" placeholder="Email" id="email">
+        <input type="password" placeholder="Password" id="pass">
+        <button type="submit" id="btn">Delete</button>
+
+    </form>
+
+
+
+
+    <script>
+
+        let btn = document.getElementById('btn')
+
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault()
+
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('pass').value;
+
+
+            let userData = { email, password };
+            console.log(userData);
+
+            document.getElementById('email').value = '';
+            document.getElementById('pass').value = '';
+
+
+            let res = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+
+            let data = await res.json();
+            alert(data.message);
+
+        });
+
+    </script>
+
+</body>
+
+</html>

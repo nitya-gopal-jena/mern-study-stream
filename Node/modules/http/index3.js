@@ -1,7 +1,8 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { error } = require('console');
+
+
 const server = http.createServer((req, res) => {
     // console.log("client request come");
     // res.end("Hello");
@@ -37,11 +38,15 @@ const server = http.createServer((req, res) => {
                 break;
             case '/login': myfunc('pages/login.html')
                 break;
+            case '/delete': myfunc('pages/delete.html')
+                break;
             default:
                 res.end("<h1>404 page not found</h1>")
         }
+
     } else if (method === 'POST') {
         switch (url) {
+
             case '/signup': req.on('data', (userDetails) => {
                 let user = JSON.parse(userDetails.toString())
 
@@ -73,12 +78,12 @@ const server = http.createServer((req, res) => {
                 fs.readFile(path.join(__dirname, 'users.json'), 'utf-8', (error, file) => {
 
                     if (error) {
-                       return res.end(JSON.stringify({message:'Server side error'}))
-                    } 
+                        return res.end(JSON.stringify({ message: 'Server side error' }))
+                    }
 
                     usersArr = JSON.parse(file)
                     const isUser = usersArr.find((u) => u.email === user.email);
-                    
+
                     if (!isUser) {
                         return res.end(JSON.stringify({ message: 'Invalid Email' }))
                     }
@@ -88,7 +93,7 @@ const server = http.createServer((req, res) => {
                     }
 
                     return res.end(JSON.stringify({ message: 'user login successfully' }));
-     
+
                 })
 
                 console.log(user);
@@ -99,7 +104,41 @@ const server = http.createServer((req, res) => {
         }
     }
 
-})
+
+
+    else if (method === 'DELETE') {
+        if (url === '/delete') {
+
+
+            req.on('data', (userDetails) => {
+                // reading the user details from req
+                const user = JSON.parse(userDetails.toString());
+                fs.readFile(path.join(__dirname, 'users.json'), 'utf-8', (err, file) => {
+                    if (err) {
+                        return res.end(JSON.stringify({ message: "Server Side error" }));
+                    }
+                    // parsing the user data from file means converting string data to object
+                    let userArr = JSON.parse(file)
+                    // checking the user is exist or not
+                    const userExist = userArr.find(u => u.email === user.email);
+                    if (!userExist) {
+                        return res.end(JSON.stringify({ message: "user not found" }));
+                    }
+                    if (userExist.password !== user.password) {
+                        return res.end(JSON.stringify({ message: "Invalid password" }))
+                    }
+                    userArr = userArr.filter(u => u.email !== user.email);
+
+                    fs.writeFileSync(path.join(__dirname, 'users.json'), JSON.stringify(userArr));
+                    return res.end(JSON.stringify({ message: "user deleted successfully" }));
+                });
+            });
+        }
+    }
+
+
+});
+
 
 server.listen('4000', 'localhost', () => {
     console.log("Server started http://localhost:4000");
