@@ -1,9 +1,5 @@
-
-
-
 [
-  { "email": "m@gmail.com", "name": "Nitya", "age": "25", "password": "12345" },
   { "email": "n@gmail.com", "name": "nani", "age": "24", "password": "12345" },
-  { "email": "t@gmail.com", "name": "tata", "age": "24", "password": "12345" }
+  { "email": "t@gmail.com", "name": "tata", "age": "24", "password": "12345" },
+  { "email": "m@gmail.com", "name": "mota", "age": "24", "password": "123456" }
 ]
-

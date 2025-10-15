@@ -4,25 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Update Password</title>
 </head>
 
 <body>
 
-    <h1>This is login page</h1>
+
+    <h1>Update The Password</h1>
+    <br>
 
     <a href="/home">Home</a>
     <a href="/about">About</a>
     <a href="/signup">Signup</a>
-      <a href="/update">Update Account</a>
 
     <br><br>
 
     <form>
 
         <input type="email" placeholder="Email" id="email">
-        <input type="password" placeholder="Password" id="pass">
-        <button type="submit" id="btn">Submit</button>
+        <input type="password" placeholder="Current Password" id="pass">
+        <input type="New password" placeholder="New Password" id="new-pass">
+        <button type="submit" id="btn">Update</button>
 
     </form>
 
@@ -31,24 +33,30 @@
 
     <script>
 
-        let btn = document.getElementById('btn')
+       let btn = document.getElementById('btn')
 
         btn.addEventListener('click', async (e) => {
             e.preventDefault()
 
             let email = document.getElementById('email').value;
             let password = document.getElementById('pass').value;
+            let newPassword = document.getElementById('new-pass').value;
 
+             if (!email || !password || !newPassword) {
+                alert("All fields are required.");
+                return;
+            }
 
-            let userData = { email, password };
+            let userData = { email, password , newPassword};
             console.log(userData);
 
             document.getElementById('email').value = '';
             document.getElementById('pass').value = '';
+            document.getElementById('new-pass').value='';
 
 
-            let res = await fetch('/login', {
-                method: 'POST',
+            let res = await fetch('/update', {
+                method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData)
             });
@@ -59,6 +67,7 @@
         });
 
     </script>
+
 
 </body>
 

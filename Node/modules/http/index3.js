@@ -40,6 +40,8 @@ const server = http.createServer((req, res) => {
                 break;
             case '/delete': myfunc('pages/delete.html')
                 break;
+            case '/update': myfunc('pages/update.html')
+                break;
             default:
                 res.end("<h1>404 page not found</h1>")
         }
@@ -125,7 +127,7 @@ const server = http.createServer((req, res) => {
                         return res.end(JSON.stringify({ message: "user not found" }));
                     }
                     if (userExist.password !== user.password) {
-                        return res.end(JSON.stringify({ message: "Invalid password" }))
+                        return res.end(JSON.stringify({ message: "Invalid password" }));
                     }
                     userArr = userArr.filter(u => u.email !== user.email);
 
@@ -134,6 +136,41 @@ const server = http.createServer((req, res) => {
                 });
             });
         }
+    }
+
+    else if (url == '/update' && method == 'PUT') {
+        req.on('data', (userDetails) => {
+            const user = JSON.parse(userDetails.toString());
+            fs.readFile(path.join(__dirname, 'users.json'), 'utf-8', (err, file) => {
+                if (err) {
+                    return res.end(JSON.stringify({ message: 'Server side error' }));
+                }
+
+                let userArr = JSON.parse(file);
+                const userExist = userArr.find((u) => u.email === user.email);
+                if (!userExist) {
+                    return res.end(JSON.stringify({ message: 'User not found' }));
+                }
+
+                if (userExist.password !== user.password) {
+                    return res.end(JSON.stringify({ message: "Current password not match" }));
+                }
+
+                if (!user.newPassword || user.newPassword.trim() === '') {
+                    return res.end(JSON.stringify({ message: 'New password cannot be empty' }));
+                }
+
+                userExist.password = user.newPassword;
+
+                const index = userArr.findIndex((u) => u.email === user.email);
+                userArr[index].password = user.newPassword;
+
+                fs.writeFileSync(path.join(__dirname, 'users.json'), JSON.stringify(userArr));
+
+
+                return res.end(JSON.stringify({ message: "password updated successfully" }));
+            })
+        })
     }
 
 
