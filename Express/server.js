@@ -36,6 +36,19 @@ app.get('/cookie', (req, res) => {
 })
 
 
+// Read the method from the request
+app.use('/method', (req, res) => {
+    console.log('Method = ', req.method);
+    return res.end('<h1>Welcome to Home </h1>')
+})
+
+
+// Read the params(parameter) 
+app.get('/user/:id', (req, res) => {
+    console.log('Params = ', req.params);
+    return res.json({message:'Params accepted in server'})
+})
+
 
 const PORT = 7000;
 const HOST = 'localhost';
