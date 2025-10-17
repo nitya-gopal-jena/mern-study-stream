@@ -1,10 +1,14 @@
 
 import express from 'express'
+import cookieParser from 'cookie-parser';
+
+
 
 const app = express();
 
 // Middleware 
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser());
 
 
 app.get('/', (req, res) => {
@@ -18,10 +22,18 @@ app.post('/add', (req, res) => {
     res.json({message:'Data recieved in server'})
 })
 
+// Getting hostname from server 
+app.get('/host', (req, res) => {
+    console.log("hostname = ", req.hostname);
+    return res.json({message:'Hostname from server', hostname:req.hostname})
+})
 
 
-
-
+// Read the cookies 
+app.get('/cookie', (req, res) => {
+    console.log('Cookie = ', req.cookies);
+    return res.json({message:'Cookies recieved in server'})
+})
 
 
 
