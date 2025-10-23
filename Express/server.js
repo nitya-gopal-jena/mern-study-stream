@@ -7,10 +7,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-    console.log(app === req.app);
-    res.json({ message: 'Server started ' });
-});
+// app.get('/', (req, res) => {
+//     console.log(app === req.app);
+//     res.json({ message: 'Server started ' });
+// });
 
 app.post('/add', (req, res) => {
     console.log(req.body);
@@ -77,6 +77,9 @@ app.post('/clear-cookie', (req, res) => {
 
 
 
+app.get('/', (req, res) => {
+    return res.sendFile(path.join(__dirname, 'pages/Home.html'));
+})
 
 
 
