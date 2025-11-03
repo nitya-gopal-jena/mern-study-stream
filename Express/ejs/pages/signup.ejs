@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+
+<body>
+
+    <form action="/signup" method="post">
+
+        <div class="form-group">
+            <input type="text" placeholder="Enter username" name="username">
+            <input type="password" placeholder="Enter password" name="password">
+            <input type="number" placeholder="Enter age" name="age">
+        </div>
+
+        <button type="submit">Signup</button>
+
+        <p>Already have account <a href="/login">Login</a> </p>
+
+    </form>
+
+
+    <% if(locals.message){ %>
+        <h4 style="color: red;">
+            <%= message %>
+        </h4>
+        <%} %>
+
+
+</body>
+
+</html>

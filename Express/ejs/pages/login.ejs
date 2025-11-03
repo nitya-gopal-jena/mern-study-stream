@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <form id="login-form" action="/login" method="post">
+
+        <div class="form-group">
+            <input type="text" placeholder="Enter username" name="username">
+            <input type="password" placeholder="Enter password" name="password">
+        </div>
+        <button type="submit">Login</button>
+
+        <p>Don't have account <a href="/signup">Signup</a> </p>
+
+    </form>
+
+    <% if(locals.message){ %>
+        <h4 style="color: red;">
+            <%= message %>
+        </h4>
+        <%} %>
+
+
+            <script>
+                document.getElementById('loginForm').addEventListener('submit', function (e) {
+                    const username = document.getElementById('username').value;
+                    localStorage.setItem('username', username);
+                });
+            </script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+
+  <body>
+    <%- include('./../particals/navbar.ejs') -%>
+
+    <h1>This is Home Page</h1>
+
+    <% if (typeof username !=='undefined' && username) { %>
+    <h4>Hello <%= username %></h4>
+    <button id="logout-btn">Logout</button>
+    <% } else { %>
+    <h4>Hello</h4>
+    <a href="/signup">Signup</a>
+    <a href="/login">Login</a>
+    <% } %>
+
+    <script>
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function () {
+          localStorage.removeItem('username');
+          window.location.href = '/logout';
+        });
+      }
+    </script>
+  </body>
+</html>
