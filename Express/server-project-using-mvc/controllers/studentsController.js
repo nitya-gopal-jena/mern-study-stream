@@ -22,9 +22,11 @@ const studentSignup = async (req, res) => {
 
         studentArr.push({ ...req.body, password: hashPassword });
         fs.writeFileSync(path.join(__dirname, '../students.json'), JSON.stringify(studentArr));
+
+        return res.status(200).json({ message: 'Student account created successfully' });
+
     } catch (error) {
         console.log('error = ', error);
-
         return res.status(500).json({ message: 'Server side error', error });
     }
 };
@@ -100,5 +102,43 @@ const deleteAccount = (req, res) => {
     }
 }
 
+const updatePassword = async (req, res) => {
+    try {
 
-module.exports = { studentSignup, studentLogin, studentDetails, deleteAccount };
+        const email = req.user.email;
+        const { password, newPassword } = req.body;
+
+        if (req.body === undefined) {
+            return res.status(400).json({ message: 'Provide all values' });
+        }
+
+        if (!password || !newPassword) {
+            return res.status(400).json({ message: 'Provide all input fields' });
+        }
+
+        const studentArr = JSON.parse(fs.readFileSync(path.join(__dirname, '../students.json'), 'utf-8'));
+        const isStudent = studentArr.find((s) => s.email == email);
+        if (!isStudent) {
+            return res.status(401).json({ message: 'Student account has been deleted' })
+        }
+
+        const isPassMatch = await bcrypt.compare(password, isStudent.password);
+        if (!isPassMatch) {
+            return res.status(400).json({ message: 'Current password is invalid' })
+        }
+
+        const hashPassword = await bcrypt.hash(newPassword, 10);
+        isStudent.password = hashPassword;
+
+        fs.writeFileSync(path.join(__dirname, '../students.json'), JSON.stringify(studentArr));
+        return res.status(200).json({ message: 'Password has been updated' });
+
+
+    } catch (error) {
+        return res.status(500).json({ message: 'Server side error' });
+    }
+}
+
+
+
+module.exports = { studentSignup, studentLogin, studentDetails, deleteAccount, updatePassword };
