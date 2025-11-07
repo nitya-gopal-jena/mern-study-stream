@@ -55,7 +55,7 @@ const studentLogin = async (req, res) => {
         }
 
         const payload = { email: email, role: 'student' };
-        const token = jwt.sign(payload, 'student1234', { expiresIn: '1h' });
+        const token = jwt.sign(payload, 'student12345', { expiresIn: '24h' });
 
         return res.status(200).json({ message: 'Login successfull', token });
     } catch (error) {

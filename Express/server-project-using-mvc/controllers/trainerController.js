@@ -2,6 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const trainerSignup = async (req, res) => {
 
@@ -46,4 +47,36 @@ const trainerSignup = async (req, res) => {
 }
 
 
-module.exports = { trainerSignup};
+// trainer login
+const trainerLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        if (req.body === undefined) {
+            return res.status(400).json({ message: 'Provide all values' });
+        }
+
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Provide all input fields' });
+        }
+
+        const trainerArr = JSON.parse(fs.readFileSync(path.join(__dirname, '../trainers.json'), 'utf-8'));
+        const isTrainer = trainerArr.find((s) => s.email == email);
+        if (!isTrainer) {
+            return res.status(400).json({ message: 'Invalid email' });
+        }
+
+        const isPassMatch = await bcrypt.compare(password, isTrainer.password);
+        if (!isPassMatch) {
+            return res.status(400).json({ message: 'Invalid Password' });
+        }
+
+        const payload = { email: email, role: 'trainer' };
+        const token = jwt.sign(payload, 'student12345', { expiresIn: '24h' });
+
+        return res.status(200).json({ message: 'Login successfull', token });
+    } catch (error) {
+        return req.status(500).json({ message: 'Server side error', error });
+    }
+};
+
+module.exports = { trainerSignup, trainerLogin };

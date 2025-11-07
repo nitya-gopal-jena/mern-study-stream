@@ -10,7 +10,7 @@ const authentication = (req, res, next) => {
   const token = auth.split(' ')[1];
 
   try {
-    const payload = jwt.verify(token, 'student1234');
+    const payload = jwt.verify(token, 'student12345');
     req.user = payload;
     next();
   } catch (error) {

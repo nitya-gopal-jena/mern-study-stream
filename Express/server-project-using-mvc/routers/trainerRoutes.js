@@ -1,12 +1,14 @@
 
 const express = require('express');
-const { trainerSignup } = require('../controllers/trainerController.js');
+const { trainerSignup, trainerLogin } = require('../controllers/trainerController.js');
 
 
 const trainerRouter = express.Router();
 
 
 trainerRouter.post('/signup', trainerSignup);
+trainerRouter.post('/login', trainerLogin);
+
 
 
 

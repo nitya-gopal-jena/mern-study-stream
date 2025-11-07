@@ -1,1 +1,4 @@
-[{"name":"Nitya","email":"n@gmail.com","password":"$2b$10$QMaMZNFhJqZC9oAfbj51muIwMypIpKczSh8BNieUSxTL1Z.xgC.gS","code":"T@123"}]
+[
+  { "name": "Nitya", "email": "n@gmail.com", "password": "$2b$10$QMaMZNFhJqZC9oAfbj51muIwMypIpKczSh8BNieUSxTL1Z.xgC.gS", "code": "T@123" },
+  { "name": "trainer1", "email": "trainer1@gmail.com", "password": "$2b$10$BE0KtJTdVJPE9MkWbgsQteJKlWFythaeSwGufP8Gjk6UmGfnWl9XS", "code": "T@123" }
+]
