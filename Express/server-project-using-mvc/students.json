@@ -3,5 +3,9 @@
   { "name": "Nitya1", "email": "n1@gmail.com", "password": "$2b$10$cXJN6FDcL/PnZqolHd67p.eUjZC3uPolDyfjNegLDoD9Nk7qmS3u2", "age": "25" },
   { "name": "Nitya3", "email": "n3@gmail.com", "password": "$2b$10$vxMWAoqsgKRmcBXo6cOWAeBUgNvpCapi0cpfKWYY1nL4PlhcOLFQG", "age": "25" },
   { "name": "Nitya4", "email": "n4@gmail.com", "password": "$2b$10$bKCnXSkchUFddZSSvrXXMeXkv6J.8pBAf4/RvxujwE/jA8aUcEO9i", "age": "22" },
-  { "name": "Nitya5", "email": "n5@gmail.com", "password": "$2b$10$qF9s0csIQbRPpc43zshMLeLtnVtfpqhaXWkbXnChpzJGADK4MDd4.", "age": "22" }
+  { "name": "Nitya5", "email": "n5@gmail.com", "password": "$2b$10$qF9s0csIQbRPpc43zshMLeLtnVtfpqhaXWkbXnChpzJGADK4MDd4.", "age": "22" },
+  { "name": "nitya8", "email": "nitya8@gmail.com", "password": "$2b$10$bPu0CH9.vEvS11X19pOKVuECbx6Qxt2RhV8whBeeK6n0gDyUOqpbG", "age": "25" },
+  { "name": "nitya7", "email": "nitya7@gmail.com", "password": "$2b$10$btSTsQYVFJC/QdbPi0wMIud.D9PM/HyvlFNlIC9NiqvpEpyITPFX2", "age": "25" },
+  { "name": "nitya6", "email": "nitya6@gmail.com", "password": "$2b$10$Y.mx4VDEJQQYy/pKMO9oceOOlnSWyeKz3KSrt34krAvtC2e8L/AU2", "age": "25" },
+  { "name": "nitya9", "email": "nitya9@gmail.com", "password": "$2b$10$5T8GdcUlxZeEwm6o1pU9WO1s95SkfQnXINvwf4/OvXGNhAgmF0SDe", "age": "25" }
 ]

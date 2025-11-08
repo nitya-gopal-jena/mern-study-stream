@@ -1,6 +1,8 @@
 
 const express = require('express');
-const { trainerSignup, trainerLogin } = require('../controllers/trainerController.js');
+const { trainerSignup, trainerLogin, createStudent } = require('../controllers/trainerController.js');
+const authentication = require('../auth/auth.js');
+const authorization = require('../auth/authorization.js');
 
 
 const trainerRouter = express.Router();
@@ -8,7 +10,7 @@ const trainerRouter = express.Router();
 
 trainerRouter.post('/signup', trainerSignup);
 trainerRouter.post('/login', trainerLogin);
-
+trainerRouter.post('/:email', authentication, authorization, createStudent);
 
 
 

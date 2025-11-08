@@ -11,7 +11,9 @@ const allStudentsInfo = async (req, res) => {
         }
 
         const studentArr = JSON.parse(fs.readFileSync(path.join(__dirname, '../students.json'), 'utf-8'));
-        
+
+        studentArr.forEach(student => delete student.password);
+
         return res.status(200).json(studentArr);
 
     } catch (error) {
