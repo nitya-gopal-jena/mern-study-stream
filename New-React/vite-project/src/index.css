@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img{
+
+   width:100%;
+   height: 200px;
+}
+
+.navbar-brand{
+    color: white !important;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.navbar-brand i{
+    color: aquamarine !important;
+}
