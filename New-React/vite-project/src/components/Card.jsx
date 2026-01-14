@@ -5,7 +5,9 @@ const Card = (props) => {
     <>
       <div className='col-3 p-3'>
         <div className='card mt-4 shadow-sm'>
-          <img src={props.imgName} className='card-img-top' alt='GTA cover' />
+          <div className='card-header'>
+            <img src={props.imgName} className='card-img-top' alt='GTA cover' />
+          </div>
         </div>
       </div>
     </>
